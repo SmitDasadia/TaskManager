@@ -66,7 +66,7 @@ const Task = () => {
   };
 
   return (
-    <section>
+    <section className="p-8">
       <div className="container mx-auto p-4">
         <h2 className="text-2xl font-semibold mb-4">Edit Task</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -114,8 +114,8 @@ const Task = () => {
             />
           </div>
 
-          {/* ... other form fields */}
-          <div className="flex flex-col">
+          
+          <div className="flex flex-col pb-5">
             <label className="mb-1 text-sm font-medium">Status:</label>
             <select
               name="status"
