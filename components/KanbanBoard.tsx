@@ -57,9 +57,33 @@ const KanbanBoard: React.FC = () => {
     localStorage.setItem("tasks", JSON.stringify(updatedTasks));
   };
 
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>, status: string) => {
+    e.preventDefault();
+    const taskId = e.dataTransfer.getData("text/plain");
+
+    // Update task status based on taskId
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === taskId) {
+        return { ...task, status };
+      }
+      return task;
+    });
+
+    setTasks(updatedTasks);
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+  };
+
+  const allowDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="flex flex-wrap">
-      <div className="w-full sm:w-1/3  p-4">
+      <div
+        className="w-full sm:w-1/3  p-4"
+        onDrop={(e) => handleDrop(e, "Not Started")}
+        onDragOver={allowDrop}
+      >
         <div className="text-md pb-3 flex items-center">
           <span className="font-semibold bg-red-200 mr-2 px-2 rounded-sm">
             Not Started
@@ -93,7 +117,11 @@ const KanbanBoard: React.FC = () => {
         </div>
       </div>
 
-      <div className="w-full sm:w-1/3  p-4">
+      <div
+        className="w-full sm:w-1/3  p-4"
+        onDrop={(e) => handleDrop(e, "In Process")}
+        onDragOver={allowDrop}
+      >
         <div className="text-md pb-3 flex items-center">
           <span className="font-semibold bg-yellow-200 mr-2 px-2 rounded-sm">
             In Process
@@ -125,8 +153,12 @@ const KanbanBoard: React.FC = () => {
         </div>
       </div>
 
-      <div className="w-full sm:w-1/3  p-4">
-        <div className="text-md pb-3 flex items-center">
+      <div
+        className="w-full sm:w-1/3  p-4"
+        onDrop={(e) => handleDrop(e, "Completed")}
+        onDragOver={allowDrop}
+      >
+        <div className="text-md pb-8 flex items-center">
           <span className="font-semibold bg-green-200 mr-2 px-2 rounded-sm">
             Completed
           </span>
