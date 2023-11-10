@@ -54,6 +54,17 @@ const Task = () => {
     router.push("/"); // Redirect to home page
   };
 
+  const handleDelete = () => {
+    const storedTasks: TaskData[] = JSON.parse(
+      localStorage.getItem("tasks") || "[]"
+    );
+    const updatedTasks: TaskData[] = storedTasks.filter(
+      (task) => task.id !== id
+    );
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    router.push("/"); // Redirect to home page after deletion
+  };
+
   return (
     <section>
       <div className="container mx-auto p-4">
@@ -122,6 +133,12 @@ const Task = () => {
             className="bg-blue-500 text-white font-semibold rounded py-2 px-4 hover:bg-blue-700"
           >
             Update Task
+          </button>
+          <button
+            onClick={handleDelete}
+            className="bg-red-500 text-white font-semibold rounded py-2 px-4 hover:bg-red-700 mt-4 ml-4"
+          >
+            Delete Task
           </button>
         </form>
       </div>
