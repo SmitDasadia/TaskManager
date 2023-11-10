@@ -55,7 +55,7 @@ const Task = () => {
   };
 
   return (
-    <div>
+    <section>
       <div className="container mx-auto p-4">
         <h2 className="text-2xl font-semibold mb-4">Edit Task</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -125,7 +125,7 @@ const Task = () => {
           </button>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 

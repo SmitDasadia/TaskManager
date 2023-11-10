@@ -158,7 +158,7 @@ const KanbanBoard: React.FC = () => {
         onDrop={(e) => handleDrop(e, "Completed")}
         onDragOver={allowDrop}
       >
-        <div className="text-md pb-8 flex items-center">
+        <div className="text-md pb-3 flex items-center">
           <span className="font-semibold bg-green-200 mr-2 px-2 rounded-sm">
             Completed
           </span>
